@@ -55,7 +55,7 @@ const navLinks = [
   { to: '/news/', label: t('News') },
   { to: '/manual/', label: t('Manual') },
   // Old /plugins/ addresses redirect to the standalone directory.
-  { href: 'https://plugins.omarchy.org', label: 'Plugins' },
+  { href: 'https://plugins.omarchy.org', label: t('Plugins') },
   { to: '/themes/', label: t('Themes') },
 ] as const
 

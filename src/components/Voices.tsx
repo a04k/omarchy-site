@@ -4,6 +4,7 @@ import { PlayIcon, XIcon } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { CardRail } from '@/components/CardRail'
+import { t } from '@/i18n/site'
 import voices from '@/data/voices.json'
 
 /** The wall's height before the fold, on a wide screen. */
@@ -94,7 +95,7 @@ export function Voices() {
       </div>
       <div className="mt-6 hidden justify-center sm:flex">
         <Button variant="outline" aria-expanded={open} onClick={toggle}>
-          {open ? 'Show less' : 'View more'}
+          {open ? t('Show less') : t('View more')}
         </Button>
       </div>
     </>
