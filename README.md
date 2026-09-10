@@ -33,6 +33,7 @@ layout, navigation, and styling in `src/`; preview through the dev server.
 After editing content inputs, run `npm run port` to refresh the dev data.
 
 - Edit standalone page content in its existing `index.html`.
+- Edit the doctrine in `content/doctrine.md`; `/doctrine/` renders its principles using the shared page heading and prose styles.
 - Edit the homepage announcement in `src/data/banner.json` (`null` hides it).
 - Run `bin/build-news` after editing Markdown in `content/news/`; it updates
   article inputs, images, and the RSS feed.

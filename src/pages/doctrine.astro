@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro'
+import { PageHeading } from '../components/PageHeading'
+import { compiledContent } from '../../content/doctrine.md'
+
+// Present clean, linked titles while keeping the numbered Markdown as the source.
+const html = (await compiledContent()).replace(
+  /<h2 id="\d+-([^"]+)">\d+\. ([\s\S]*?)\.?<\/h2>/g,
+  '<h2 id="$1"><a href="#$1">$2</a></h2>',
+)
+---
+
+<Base
+  title="The Omarchy Doctrine"
+  description="Ten principles behind Omarchy. Unite the nerds. Hold the line. Have some fun. Build the perfect computer."
+  path="/doctrine/"
+>
+  <main class="mx-auto max-w-3xl px-4 py-8 sm:px-6" lang="en">
+    <PageHeading title="Doctrine by DHH" />
+    <article class="prose ported doctrine" aria-label="The Omarchy Doctrine" set:html={html} />
+  </main>
+</Base>
+
+<style>
+  .doctrine :global(h2) {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.75rem;
+    letter-spacing: normal;
+    margin-bottom: 0.5em;
+  }
+
+  .doctrine :global(h2:not(:first-child)) {
+    margin-top: 2.75em;
+  }
+
+  .doctrine :global(h2 a),
+  .doctrine :global(h2 a:hover) {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--color-border-strong);
+    transition: none;
+  }
+</style>
