@@ -1,3 +1,10 @@
+---
+title: Doctrine by DHH
+seoTitle: The Omarchy Doctrine
+description: Ten principles behind Omarchy. Unite the nerds. Hold the line. Have some fun. Build the perfect computer.
+presentation: principles
+---
+
 ## 1. Unite the nerds.
 
 There are amazing nerds everywhere. Cracked teenagers. Wise neckbeards. Obsessive people with jagged opinions and incredible talent. But we're spread across a thousand little fiefdoms, accomplishing a fraction of what we could together. Omarchy is a rallying cry to unite that talent behind a common goal: Make Linux win the desktop, as the prophecy foretold.
