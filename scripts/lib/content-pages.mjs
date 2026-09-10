@@ -1,7 +1,10 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import path from 'node:path'
-import { marked } from 'marked'
+import { marked, Lexer, Parser, TextRenderer } from 'marked'
 import { parseFrontmatter } from 'astro/markdown'
+
+const headingText = new TextRenderer()
+headingText.html = () => ''
 
 export function renderPage(source) {
   const { frontmatter, content } = parseFrontmatter(source)
@@ -23,8 +26,8 @@ export function renderPage(source) {
       /<h2>(\d+\. )?([\s\S]*?)<\/h2>/g,
       (_, _number, heading) => {
         const title = heading.replace(/\.$/, '')
-        const slug = title
-          .replace(/<[^>]*>/g, '')
+        const slug = new Parser()
+          .parseInline(Lexer.lexInline(title), headingText)
           .replace(/&#39;|&quot;/g, '')
           .toLowerCase()
           .replace(/[^\w\s-]/g, '')

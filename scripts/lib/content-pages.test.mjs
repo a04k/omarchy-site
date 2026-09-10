@@ -63,3 +63,24 @@ test('Astro routes cannot bypass the content pipeline with direct Markdown impor
     )
   }
 })
+
+test('heading anchors use text tokens and cannot contain HTML attribute syntax', () => {
+  const prefix = '---\ntitle: Principles\npresentation: principles\n---\n\n'
+  const formatted = renderPage(
+    prefix + '## 1. <em>Unite</em> the <strong>nerds</strong>.\n',
+  )
+  assert.match(
+    formatted.html,
+    /<h2 id="unite-the-nerds"><a href="#unite-the-nerds">/,
+  )
+  for (const heading of [
+    '<scr<script>ipt>alert(1)</script>',
+    '<span title="a > b">Hello</span>',
+    '&quot; onclick=&quot;alert(1)',
+  ]) {
+    const page = renderPage(prefix + `## 1. ${heading}.\n`)
+    const match = page.html.match(/^<h2 id="([\w-]+)"><a href="#([\w-]+)">/)
+    assert.ok(match, page.html)
+    assert.equal(match[1], match[2])
+  }
+})
